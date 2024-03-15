@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../config";
 import MainImage from "../LandingPage/Sections/MainImage";
 import MovieInfo from "./sections/MovieInfo";
+import Favorite from "./sections/Favorite";
 import GridCards from "../commons/GridCard";
-import { Row } from "antd";
+
+import { Row, Button } from "antd";
 
 function MovieDetail() {
   const { movieId } = useParams();
@@ -20,14 +22,14 @@ function MovieDetail() {
     axios
       .get(endpointInfo) //
       .then((res) => {
-        // console.log(res.data);
+        // console.log("endpointInfo", res.data);
         setMovie(res.data);
       });
 
     axios
       .get(endpointCrew) //
       .then((res) => {
-        console.log(res.data.cast);
+        // console.log("endpointCrew", res.data.cast);
         setCasts(res.data.cast);
       });
     //
@@ -43,6 +45,14 @@ function MovieDetail() {
       )}
       {/* Body */}
       <dir style={{ width: "85%", margin: "1rem auto" }}>
+        {/* Favorite 버튼을 오른쪽 끝으로 보내는 style */}
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Favorite
+            movieInfo={Movie}
+            movieId={movieId}
+            userFrom={localStorage.getItem("userId")}
+          ></Favorite>
+        </div>
         {/* movieINfo */}
         <MovieInfo movie={Movie}></MovieInfo>
 
@@ -52,13 +62,13 @@ function MovieDetail() {
         <div
           style={{ display: "flex", justifyContent: "center", margin: "2rem" }}
         >
-          <button
+          <Button
             onClick={function () {
               setActorToggle(!ActorToggle);
             }}
           >
             Toggle Actor View
-          </button>
+          </Button>
         </div>
 
         {ActorToggle && (
@@ -78,7 +88,7 @@ function MovieDetail() {
               ))}
           </Row>
         )}
-      </dir>
+      </dir>{" "}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MainImage from "./Sections/MainImage";
 import GridCards from "../commons/GridCard";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../config";
-import { Row } from "antd";
+import { Row, Button } from "antd";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function LandingPage() {
     axios
       .get(endpoint) //
       .then((res) => {
-        console.log(res.data.results, res);
+        // console.log(res.data.results, res);
         setMovies([...Movies, ...res.data.results]);
         setMainMovieImage(res.data.results[0]);
         setCurrentPage(res.data.page + 1);
@@ -82,7 +82,7 @@ function LandingPage() {
           </Row>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button onClick={loadMoreItems}>Load More</button>
+          <Button onClick={loadMoreItems}>Load More</Button>
         </div>
       </div>
       <div
@@ -94,8 +94,8 @@ function LandingPage() {
           height: "100vh",
         }}
       >
-        <h2>시작페이지</h2>
-        <button onClick={onClickHandler}>로그아웃</button>
+        {/* <h2>시작페이지</h2>
+        <button onClick={onClickHandler}>로그아웃</button> */}
       </div>
     </>
   );
