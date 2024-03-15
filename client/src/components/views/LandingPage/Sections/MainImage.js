@@ -11,10 +11,10 @@ function MainImage(props) {
   100%)`,
         height: "500px",
         backgroundImage: `url('${props.image}')`,
+        width: "100%",
         backgroundColor: "#1c1c1c",
         backgroundSize: "100%, cover",
         backgroundPosition: "center, center",
-        width: "100%",
         position: "relative",
       }}
     >

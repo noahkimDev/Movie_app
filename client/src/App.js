@@ -8,6 +8,7 @@ import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import Auth from "./hoc/auth.js";
 import MovieDetail from "./components/views/MovieDetail/MovieDetail.js";
 import NavBar from "./components/views/NavBar/NavBar.js";
+import FavoritePage from "./components/views/FavoritePage/FavoritePage.js";
 
 function App() {
   // Auth(LoginPage,false) 의미 : 로그인 페이지는 로그인하지 않은 유저만 접근 가능
@@ -24,6 +25,9 @@ function App() {
             path="/movie/:movieId"
             Component={Auth(MovieDetail, null)}
           />
+          {/* 로그인 한 사람만 볼 수 있도록 true을 Auth()에 할당한다. */}
+          <Route exact path="/favorite" Component={Auth(FavoritePage, true)} />
+
           {/* <Route exact path="/" Component={LandingPage} />
           <Route exact path="/login" Component={LoginPage} />
           <Route exact path="/register" Component={RegisterPage} /> */}

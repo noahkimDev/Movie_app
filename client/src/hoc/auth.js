@@ -35,9 +35,12 @@ export default function (SpecificComponent, option, adminRoute = null) {
           // 랜딩페이지로 보낸다
           if (adminRoute && !res.payload.isAdmin) {
             navigate("/");
-          } else if (!option) {
-            navigate("/");
           }
+          //! 아래와 같은 조건을 적용시키면, option값이 null인 경우에 (로그인 여부 관계없이 접근 가능한 페이지)
+          //! 원하는 페이지로 접근하지 못하고 home'/'으로 이동하게 된다.
+          //  else if (!option) {
+          // navigate("/");
+          // }
         }
       });
     }, []);

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../_actions/user_action";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +31,9 @@ function LoginPage(props) {
     // dispatch를 이용해서 loginUser라는 action을 취한다
     dispatch(loginUser(body)).then((res) => {
       if (res.payload.loginSuccess) {
-        // props.history.push("/");
+        // console.log("확인", res.payload);
+        //! Favorite 페이지 만들 때 userId를 사용
+        window.localStorage.setItem("userId", res.payload.userId);
         navigate("/");
       } else {
         alert("Error");
